@@ -34,15 +34,8 @@ public class inputMsg extends Thread {
 						System.out.println("참 잘했어요");
 						user.get(userId).setScore(1); // 1점증가
 						new broadcast(userId + "님 정답! 다음 문제로 넘어갑니다 \n");
-						try {
-							sleep(2000);
-						} catch (InterruptedException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
-						} finally {
-							new broadcast("next"+"\n");
-						}
-//					new broadcast(next,user);
+
+						new broadcast("next"+"\n");
 						
 					} else if (msg.equals("ready+1")) {
 						gameServer.readyCount++; // 레디 시 readyCount +1

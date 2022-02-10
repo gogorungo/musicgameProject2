@@ -14,7 +14,7 @@ import view.buttonsGUI.MultiGameButtons;
 public class gameClientReadMsg extends Thread {
 	Socket socket = gameClient.getSocket();
 	BufferedReader br;
-//	MusicPlayer musicPlayer;
+	MusicPlayer musicPlayer;
 	public static ArrayList<Integer> serverSongRandom;
 	StringTokenizer StringTZ;
 
@@ -31,13 +31,15 @@ public class gameClientReadMsg extends Thread {
 				String subStr = serverMsg.substring(serverMsg.length()-1);
 				if(serverMsg.equals("start"))
 				{
-					new MusicPlayer();
+					musicPlayer = new MusicPlayer();
 //					musicPlayer.musicStart();
 					
 				} 
 				else if(serverMsg.equals("next")) {
-					MusicPlayer.flagIf = true;
-					MusicPlayer.num++;
+					
+					musicPlayer.flagIf = true;
+					
+//					MusicPlayer.num++;
 				} 
 				else if (subStr.equals(" ")) {
 					serverMsg = serverMsg.substring(0, serverMsg.length() - 1); // 임의로 넣은 " " 제거
