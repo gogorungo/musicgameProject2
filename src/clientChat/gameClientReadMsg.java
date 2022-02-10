@@ -41,15 +41,9 @@ public class gameClientReadMsg extends Thread {
 					
 //					MusicPlayer.num++;
 				} 
-				else if (subStr.equals(" ")) {
-					serverMsg = serverMsg.substring(0, serverMsg.length() - 1); // 임의로 넣은 " " 제거
-					System.out.println(serverMsg);
-					MultiGameButtons.setReadChatting(serverMsg);
-					if (MultiGameButtons.display != null) { // 첫 생성때는 display가 없으므로 생성 이후부터 적용
-						MultiGameButtons.appendChat();
-					}
-				}
-				else {
+
+				else if(serverMsg.startsWith("songRandom ") && !subStr.equals(" ")){
+					serverMsg = serverMsg.substring(11);
 					StringTZ = new StringTokenizer(serverMsg,"-");
 					serverSongRandom = new ArrayList<Integer>();
 					while(StringTZ.hasMoreTokens()) {
@@ -57,7 +51,15 @@ public class gameClientReadMsg extends Thread {
 						int intToken = Integer.valueOf(token); // 숫자로 변경
 						serverSongRandom.add(intToken); // 배열에 저장
 					}
-					
+				}
+//				else if (subStr.equals(" ")) {
+				else {
+					serverMsg = serverMsg.substring(0, serverMsg.length() - 1); // 임의로 넣은 " " 제거
+					System.out.println(serverMsg);
+					MultiGameButtons.setReadChatting(serverMsg);
+					if (MultiGameButtons.display != null) { // 첫 생성때는 display가 없으므로 생성 이후부터 적용
+						MultiGameButtons.appendChat();
+					}
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block

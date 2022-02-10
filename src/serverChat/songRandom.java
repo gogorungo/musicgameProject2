@@ -13,7 +13,7 @@ public class songRandom {
 			if (!songRandomIntList.contains(stringNum)) { // 중복제거
 				songRandomIntList.add(stringNum);
 				if(randomNum == null) { // 첫칸
-					randomNum = stringNum+"-";
+					randomNum = "songRandom "+stringNum+"-";
 				}
 				else {
 					randomNum = randomNum.concat(stringNum+"-"); // 두번째부터 문자열 통합
