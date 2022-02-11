@@ -36,8 +36,9 @@ public class gameClientReadMsg extends Thread {
 					
 				} 
 				else if(serverMsg.equals("next")) {
-					
-					musicPlayer.flagIf = true;
+					System.out.println("change flag ......");
+
+					musicPlayer.setFlagIf(true);
 					
 //					MusicPlayer.num++;
 				} 

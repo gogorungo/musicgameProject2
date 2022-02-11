@@ -12,7 +12,7 @@ public class Game extends Thread {
 	MusicInfo musicInfo;
 	String songInfo, answer;
 	int grade = 0; // 점수
-	public static boolean flag = true;
+	public boolean flag = true;
 
 	public Game(MusicInfo musicInfo) {
 		this.musicInfo = musicInfo;
@@ -30,6 +30,13 @@ public class Game extends Thread {
 		while (flag) {
 			answer = MultiGameButtons.getAnswer();
 			songInfo = musicInfo.song.trim();
+
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException e2) {
+				// TODO Auto-generated catch block
+				e2.printStackTrace();
+			}
 			if(songInfo.equalsIgnoreCase(answer)) {
 				try {
 					bw.write("next"+"\n");
@@ -45,9 +52,8 @@ public class Game extends Thread {
 					}
 					e.printStackTrace();
 				}
-				grade++; // 점수
+
 				flag = false; // 반복 스레드 종료
-				
 			}
 		}
 	}

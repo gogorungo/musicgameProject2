@@ -12,6 +12,7 @@ public class inputMsg extends Thread {
 	private HashMap<String, gameUser> user = gameServer.getUser();
 	private BufferedReader br;
 	private String userId, msg;
+	int count = 0;
 
 
 	public inputMsg(String userId, BufferedReader br) {
@@ -31,11 +32,20 @@ public class inputMsg extends Thread {
 						
 					} else if (msg.equals(next)) {
 						// 다른 사람이 정답을 맞추면 모두에게 다음 문제로 넘어가라고 명령함
-						System.out.println("참 잘했어요");
-						user.get(userId).setScore(1); // 1점증가
-						new broadcast(userId + "님 정답! 다음 문제로 넘어갑니다 \n");
-
-						new broadcast("next"+"\n");
+						
+						if(count < 9) {
+							user.get(userId).setScore(1); // 1점증가
+							new broadcast(userId + "님 정답! 다음 문제로 넘어갑니다 \n");
+	
+							new broadcast("next"+"\n");
+							
+							count++;
+						}
+						else if(count == 9) { // 마지막문제는 다음문제 코드를 보내지 않는다
+							
+							
+						}
+						
 						
 					} else if (msg.equals("ready+1")) {
 						gameServer.readyCount++; // 레디 시 readyCount +1
