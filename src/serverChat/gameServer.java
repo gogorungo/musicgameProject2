@@ -56,7 +56,9 @@ public class gameServer extends Thread {
 				userId = br.readLine();
 
 				// 서버의 해시맵으로 전달
-				user.put(userId, new gameUser(socket, br, bw));
+				synchronized (user) {
+					user.put(userId, new gameUser(socket, br, bw));
+				}
 
 				// 서버에 출력. 전체 출력
 				new broadcast("[공지] : " + userId + "님이 입장하셨습니다123 \n");
@@ -68,6 +70,8 @@ public class gameServer extends Thread {
 			} catch (IOException e) {
 				//클라이언트 접속이 끊어질 시 전체 메세지
 				new broadcast("[공지] : "+ userId + "님이 나가셨습니다 \n");
+				
+
 				
 				// 소켓 접속이 끊길 시 close()를 해줘서 예외 차단
 				if(socket != null)

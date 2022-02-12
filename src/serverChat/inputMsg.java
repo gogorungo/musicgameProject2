@@ -42,8 +42,9 @@ public class inputMsg extends Thread {
 							count++;
 						}
 						else if(count == 9) { // 마지막문제는 다음문제 코드를 보내지 않는다
-							
-							
+							user.get(userId).setScore(1); 
+							//결과창으로 이동 코드
+							new broadcast("clear"+"\n");
 						}
 						
 						
@@ -52,6 +53,7 @@ public class inputMsg extends Thread {
 						if (gameServer.readyCount == user.size()) {
 							// gameServer.readyCount>1 && // 끝나고 추가할 것. 2명 이상일때만 시작
 							new songRandom();
+							new broadcast("readybutton"+"\n");
 							new broadcast("start"+"\n");
 						}
 					} else if (msg.equals("ready-1")) {
@@ -62,6 +64,11 @@ public class inputMsg extends Thread {
 					}
 				}
 			} catch (IOException e) {
+				new broadcast("[공지] : "+ userId + "님이 나가셨습니다 \n");
+				
+				user.remove(userId); // 유저가 접속이 끊길 시 해시맵에서 삭제
+				
+				
 				if (br != null)
 					try {
 						br.close();

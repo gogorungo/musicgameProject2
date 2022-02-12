@@ -2,13 +2,11 @@ package clientChat;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.StringTokenizer;
 
 import music.MusicPlayer;
-import serverChat.songRandom;
 import view.buttonsGUI.MultiGameButtons;
 
 public class gameClientReadMsg extends Thread {
@@ -17,6 +15,7 @@ public class gameClientReadMsg extends Thread {
 	MusicPlayer musicPlayer;
 	public static ArrayList<Integer> serverSongRandom;
 	StringTokenizer StringTZ;
+
 
 	public gameClientReadMsg(BufferedReader br) {
 		this.br = br;
@@ -32,16 +31,20 @@ public class gameClientReadMsg extends Thread {
 				if(serverMsg.equals("start"))
 				{
 					musicPlayer = new MusicPlayer();
-//					musicPlayer.musicStart();
-					
 				} 
+				else if(serverMsg.equals("readybutton")) {
+
+					MultiGameButtons.ReadyButton.setVisible(false);
+				}
+				
 				else if(serverMsg.equals("next")) {
 					System.out.println("change flag ......");
 
 					musicPlayer.setFlagIf(true);
-					
-//					MusicPlayer.num++;
 				} 
+				else if(serverMsg.equals("clear")){
+					//결과창 호출
+				}
 
 				else if(serverMsg.startsWith("songRandom ") && !subStr.equals(" ")){
 					serverMsg = serverMsg.substring(11);
@@ -57,6 +60,7 @@ public class gameClientReadMsg extends Thread {
 				else {
 					serverMsg = serverMsg.substring(0, serverMsg.length() - 1); // 임의로 넣은 " " 제거
 					System.out.println(serverMsg);
+
 					MultiGameButtons.setReadChatting(serverMsg);
 					if (MultiGameButtons.display != null) { // 첫 생성때는 display가 없으므로 생성 이후부터 적용
 						MultiGameButtons.appendChat();

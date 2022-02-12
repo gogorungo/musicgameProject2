@@ -70,6 +70,7 @@ public class MusicPlayer extends Thread {
 		
 		if(index == 10) {
 			// 점수 결과 창으로
+			// gameClientReadMsg에서 clear 호출시 실행되도록 변경
 		}
 		// 숫자 10개 돌면 게임 끝
 		System.out.println("게임 끝");
