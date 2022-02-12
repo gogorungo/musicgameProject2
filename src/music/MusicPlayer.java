@@ -22,21 +22,25 @@ public class MusicPlayer extends Thread {
 	ArrayList<MusicInfo> listInfo = new ArrayList<>();
 	ArrayList<Integer> songRandomIntList = gameClientReadMsg.serverSongRandom;
 	public int num = 0;
-	public boolean flagIf;
-	public boolean flag;
+	private boolean flagIf;
+	private boolean flagClear = false;
+	
 
 	public MusicPlayer() {
 		listInfo = initializeMusic();
 		start();
 	}
 	
-	public boolean getFlag() {
-		return flagIf;
-	}
+
 	
 	public void setFlagIf(boolean flagIf) {
 		this.flagIf = flagIf;
 	}
+	
+	public void setFlagClear(boolean flagClear) {
+		this.flagClear = flagClear;
+	}
+	
 	
 	@Override
 	public void run() {
@@ -46,7 +50,6 @@ public class MusicPlayer extends Thread {
 		
 		
 		while(index < 10) {
-			flag = getFlag();
 
 			try {
 				Thread.sleep(100);
@@ -67,13 +70,17 @@ public class MusicPlayer extends Thread {
 			}
 			
 		}
-		
-		if(index == 10) {
-			// 점수 결과 창으로
-			// gameClientReadMsg에서 clear 호출시 실행되도록 변경
+		while (true) {
+
+			if(flagClear) {
+				// 점수 결과 창으로
+				// gameClientReadMsg에서 clear 호출시 실행되도록 변경
+				
+				// 숫자 10개 돌면 게임 끝
+				System.out.println("게임 끝");
+				break;
+			}
 		}
-		// 숫자 10개 돌면 게임 끝
-		System.out.println("게임 끝");
 
 	}
 

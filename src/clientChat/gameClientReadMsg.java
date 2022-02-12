@@ -44,6 +44,7 @@ public class gameClientReadMsg extends Thread {
 				} 
 				else if(serverMsg.equals("clear")){
 					//결과창 호출
+					musicPlayer.setFlagClear(true);
 				}
 
 				else if(serverMsg.startsWith("songRandom ") && !subStr.equals(" ")){
