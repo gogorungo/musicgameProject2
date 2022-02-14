@@ -13,7 +13,7 @@ public class inputMsg extends Thread {
 	private BufferedReader br;
 	private String userId, msg;
 	int count = 0;
-
+	boolean flag = true;
 
 	public inputMsg(String userId, BufferedReader br) {
 		this.userId = userId;
@@ -23,7 +23,7 @@ public class inputMsg extends Thread {
 	@Override
 	public void run() {
 
-		while (true) {
+		while (flag) {
 			try {
 				msg = br.readLine();
 				if (msg != null) {
@@ -44,6 +44,7 @@ public class inputMsg extends Thread {
 						else if(count == 9) { // 마지막문제는 다음문제 코드를 보내지 않는다
 							user.get(userId).setScore(1); 
 							//결과창으로 이동 코드
+							new userScore();
 							new broadcast("clear"+"\n");
 						}
 						
@@ -67,7 +68,7 @@ public class inputMsg extends Thread {
 				new broadcast("[공지] : "+ userId + "님이 나가셨습니다 \n");
 				
 				user.remove(userId); // 유저가 접속이 끊길 시 해시맵에서 삭제
-				
+				flag = false;
 				
 				if (br != null)
 					try {

@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.StringTokenizer;
 
 import music.MusicPlayer;
@@ -42,6 +43,12 @@ public class gameClientReadMsg extends Thread {
 
 					musicPlayer.setFlagIf(true);
 				} 
+				
+				else if(serverMsg.startsWith("score") && !subStr.equals(" ")) {
+					new scoreAll(serverMsg);
+					
+				}
+				
 				else if(serverMsg.equals("clear")){
 					//결과창 호출
 					musicPlayer.setFlagClear(true);
