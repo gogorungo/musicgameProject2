@@ -54,6 +54,9 @@ public class gameClientReadMsg extends Thread {
 					musicPlayer.setFlagClear(true);
 				}
 
+				else if(serverMsg.startsWith("userList-") && !subStr.equals(" ")) {
+					new gameUserList(serverMsg);
+				}
 				else if(serverMsg.startsWith("songRandom ") && !subStr.equals(" ")){
 					serverMsg = serverMsg.substring(11);
 					StringTZ = new StringTokenizer(serverMsg,"-");

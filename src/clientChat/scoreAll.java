@@ -8,7 +8,6 @@ public class scoreAll {
 	StringTokenizer StringTZ;
 	
 	public scoreAll(String serverMsg) {
-		System.out.println(serverMsg);
 		serverMsg = serverMsg.substring(5);
 		StringTZ = new StringTokenizer(serverMsg,"-");
 		

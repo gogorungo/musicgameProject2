@@ -27,9 +27,25 @@ public class MultiGameButtons extends JFrame {
 	private static BufferedWriter bw = gameClient.getBw();	
 	private static String readChatting;
 	private static String answer;
+	
 	public static JTextArea display;
 	public static Font displayFont;
 	public static JScrollPane scroll;
+	
+	public static ImageIcon character1 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character1.png"));
+	public static JLabel Ch1 = new JLabel(character1);
+	public static ImageIcon character2 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character2.png"));
+	public static JLabel Ch2 = new JLabel(character2);
+	public static ImageIcon character3 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character3.png"));
+	public static JLabel Ch3 = new JLabel(character3);
+	public static ImageIcon character4 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character4.png"));
+	public static JLabel Ch4 = new JLabel(character4);
+	
+	public static JLabel Ch1Name = new JLabel();
+	public static JLabel Ch2Name = new JLabel();
+	public static JLabel Ch3Name = new JLabel();
+	public static JLabel Ch4Name = new JLabel();
+	
 	public static ImageIcon ReadyBtn;
 	public static ImageIcon ReadyBtnMouseOver;
 	public static ImageIcon ReadyBtnOn;
@@ -56,14 +72,14 @@ public class MultiGameButtons extends JFrame {
 				Main.class.getResource("/view/buttonsGUI/PlayMusicBtnMouseOver.png"));
 		JButton PlayMusicButton = new JButton(PlayMusicBtn);
 
-		ImageIcon character1 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character1.png"));
-		JLabel Ch1 = new JLabel(character1);
-		ImageIcon character2 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character2.png"));
-		JLabel Ch2 = new JLabel(character2);
-		ImageIcon character3 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character3.png"));
-		JLabel Ch3 = new JLabel(character3);
-		ImageIcon character4 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character4.png"));
-		JLabel Ch4 = new JLabel(character4);
+//		ImageIcon character1 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character1.png"));
+//		JLabel Ch1 = new JLabel(character1);
+//		ImageIcon character2 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character2.png"));
+//		JLabel Ch2 = new JLabel(character2);
+//		ImageIcon character3 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character3.png"));
+//		JLabel Ch3 = new JLabel(character3);
+//		ImageIcon character4 = new ImageIcon(Main.class.getResource("/view/charactersGUI/character4.png"));
+//		JLabel Ch4 = new JLabel(character4);
 
 //		ImageIcon ReadyBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Readybutton.png"));
 //		ImageIcon ReadyBtnMouseOver = new ImageIcon(
@@ -71,10 +87,10 @@ public class MultiGameButtons extends JFrame {
 //		ImageIcon ReadyBtnOn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/ReadybuttonOn.png"));
 //		JButton ReadyButton = new JButton(ReadyBtn);
 
-		JLabel Ch1Name = new JLabel();
-		JLabel Ch2Name = new JLabel();
-		JLabel Ch3Name = new JLabel();
-		JLabel Ch4Name = new JLabel();
+//		JLabel Ch1Name = new JLabel();
+//		JLabel Ch2Name = new JLabel();
+//		JLabel Ch3Name = new JLabel();
+//		JLabel Ch4Name = new JLabel();
 
 		JTextField Enter = new JTextField("", 10);
 		Enter.addKeyListener(new KeyAdapter() {
@@ -173,37 +189,40 @@ public class MultiGameButtons extends JFrame {
 //			}
 //		});
 
-		Ch1.setBounds(150, 430, 165, 230);
-		Ch1Name.setText("첫번째 플레이어");
-		Ch1Name.setFont(new Font("Courier", Font.BOLD, 20));
-		Ch1Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
-		Ch1Name.setBackground(Color.WHITE);
-		Ch1Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch1Name.setBounds(217, 430 + 160, 165, 25);
-
-		Ch2.setBounds(150, 180, 165, 230);
-		Ch2Name.setText("두번째 플레이어");
-		Ch2Name.setFont(new Font("Courier", Font.BOLD, 20));
-		Ch2Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
-		Ch2Name.setBackground(Color.WHITE);
-		Ch2Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch2Name.setBounds(217, 180 + 160, 165, 25);
-
-		Ch3.setBounds(1200 - 165 - 200, 180, 165, 230);
-		Ch3Name.setText("세번째 플레이어");
-		Ch3Name.setFont(new Font("Courier", Font.BOLD, 20));
-		Ch3Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
-		Ch3Name.setBackground(Color.WHITE);
-		Ch3Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch3Name.setBounds(1200 - 165 - 200, 180 + 160, 165, 25);
-
-		Ch4.setBounds(1200 - 165 - 200, 430, 165, 230);
-		Ch4Name.setText("네번째 플레이어");
-		Ch4Name.setFont(new Font("Courier", Font.BOLD, 20));
-		Ch4Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
-		Ch4Name.setBackground(Color.WHITE);
-		Ch4Name.setHorizontalAlignment(JLabel.CENTER);
-		Ch4Name.setBounds(1200 - 165 - 200, 430 + 160, 165, 25);
+		playerName();
+		
+		
+//		Ch1.setBounds(150, 430, 165, 230);
+//		Ch1Name.setText("첫번째 플레이어");
+//		Ch1Name.setFont(new Font("Courier", Font.BOLD, 20));
+//		Ch1Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+//		Ch1Name.setBackground(Color.WHITE);
+//		Ch1Name.setHorizontalAlignment(JLabel.CENTER);
+//		Ch1Name.setBounds(217, 430 + 160, 165, 25);
+//
+//		Ch2.setBounds(150, 180, 165, 230);
+//		Ch2Name.setText("두번째 플레이어");
+//		Ch2Name.setFont(new Font("Courier", Font.BOLD, 20));
+//		Ch2Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+//		Ch2Name.setBackground(Color.WHITE);
+//		Ch2Name.setHorizontalAlignment(JLabel.CENTER);
+//		Ch2Name.setBounds(217, 180 + 160, 165, 25);
+//
+//		Ch3.setBounds(1200 - 165 - 200, 180, 165, 230);
+//		Ch3Name.setText("세번째 플레이어");
+//		Ch3Name.setFont(new Font("Courier", Font.BOLD, 20));
+//		Ch3Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+//		Ch3Name.setBackground(Color.WHITE);
+//		Ch3Name.setHorizontalAlignment(JLabel.CENTER);
+//		Ch3Name.setBounds(1200 - 165 - 200, 180 + 160, 165, 25);
+//
+//		Ch4.setBounds(1200 - 165 - 200, 430, 165, 230);
+//		Ch4Name.setText("네번째 플레이어");
+//		Ch4Name.setFont(new Font("Courier", Font.BOLD, 20));
+//		Ch4Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+//		Ch4Name.setBackground(Color.WHITE);
+//		Ch4Name.setHorizontalAlignment(JLabel.CENTER);
+//		Ch4Name.setBounds(1200 - 165 - 200, 430 + 160, 165, 25);
 
 //		JTextArea display = new JTextArea("테스트중");
 //		Font displayFont = new Font("Serif", Font.BOLD, 20);
@@ -242,6 +261,43 @@ public class MultiGameButtons extends JFrame {
 		
 		
 	}
+	
+	public static void playerName() {
+		Ch1.setBounds(150, 430, 165, 230);
+		Ch1Name.setText("첫번째 플레이어");
+		Ch1Name.setFont(new Font("Courier", Font.BOLD, 20));
+		Ch1Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+		Ch1Name.setBackground(Color.WHITE);
+		Ch1Name.setHorizontalAlignment(JLabel.CENTER);
+		Ch1Name.setBounds(217, 430 + 160, 165, 25);
+
+		Ch2.setBounds(150, 180, 165, 230);
+		Ch2Name.setText("두번째 플레이어");
+		Ch2Name.setFont(new Font("Courier", Font.BOLD, 20));
+		Ch2Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+		Ch2Name.setBackground(Color.WHITE);
+		Ch2Name.setHorizontalAlignment(JLabel.CENTER);
+		Ch2Name.setBounds(217, 180 + 160, 165, 25);
+
+		Ch3.setBounds(1200 - 165 - 200, 180, 165, 230);
+		Ch3Name.setText("세번째 플레이어");
+		Ch3Name.setFont(new Font("Courier", Font.BOLD, 20));
+		Ch3Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+		Ch3Name.setBackground(Color.WHITE);
+		Ch3Name.setHorizontalAlignment(JLabel.CENTER);
+		Ch3Name.setBounds(1200 - 165 - 200, 180 + 160, 165, 25);
+
+		Ch4.setBounds(1200 - 165 - 200, 430, 165, 230);
+		Ch4Name.setText("네번째 플레이어");
+		Ch4Name.setFont(new Font("Courier", Font.BOLD, 20));
+		Ch4Name.setOpaque(true); // Opaque값을 true로 미리 설정해 주어야 배경색이 적용된다.
+		Ch4Name.setBackground(Color.WHITE);
+		Ch4Name.setHorizontalAlignment(JLabel.CENTER);
+		Ch4Name.setBounds(1200 - 165 - 200, 430 + 160, 165, 25);
+		
+		new userNames(Ch1Name, Ch2Name, Ch3Name, Ch4Name);
+	}
+	
 	
 	public static void readyButton() {
 		ReadyBtn = new ImageIcon(Main.class.getResource("/view/buttonsGUI/Readybutton.png"));

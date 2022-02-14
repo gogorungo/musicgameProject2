@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -37,7 +38,7 @@ public class gameServer extends Thread {
 	public static HashMap<String, gameUser> getUser(){
 		return user;
 	}
-	
+
 	
 	// 접속한 유저를 관리하기 위한 쓰레드
 	@Override
@@ -58,10 +59,14 @@ public class gameServer extends Thread {
 				// 서버의 해시맵으로 전달
 				synchronized (user) {
 					user.put(userId, new gameUser(socket, br, bw));
-				}
 
+				}
+				new userList();
+				
 				// 서버에 출력. 전체 출력
 				new broadcast("[공지] : " + userId + "님이 입장하셨습니다123 \n");
+				
+				new broadcast(userList.userList + "\n");
 				
 				//유저가 입력하는 메세지 받는 곳
 				new inputMsg(userId, br).start();
