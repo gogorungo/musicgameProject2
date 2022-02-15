@@ -12,7 +12,9 @@ public class gameUserList {
 		StringTZ = new StringTokenizer(serverMsg,"-");
 		while(StringTZ.hasMoreTokens()) {
 			String token = StringTZ.nextToken();
-			gameUserName.add(token);
+			if(!gameUserName.contains(token)) {
+				gameUserName.add(token);
+			}
 		}
 		System.out.println(gameUserName.toString());
 	}
